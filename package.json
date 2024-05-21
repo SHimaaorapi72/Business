@@ -1,4 +1,5 @@
 {
+  "homepage": "https://SHimaaorapi72.github.io/business-proj",
 
   "name": "my-react-app",
 
@@ -43,6 +44,9 @@
   },
 
   "scripts": {
+    "predeploy": "npm run build",
+
+    "deploy": "gh-pages -d build",
 
     "start": "react-scripts start",
 

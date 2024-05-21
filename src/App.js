@@ -42,14 +42,14 @@ function App() {
     {path:'' , element:<Layout/> , children:[
       // {path:'clothes' , element:<Antique addToCart={addToCart}/>},
       // {path:'antique' , element:<Antique addToCart={addToCart}/>},
-      {path:'', element:<HomeCards addToCart={addToCart}/> },
+      {path:'/', element:<HomeCards addToCart={addToCart}/> },
       {path:'cart' , element:<Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart}/>},
     ]}
   ])
   return (
     <div className="App">
       
-        <RouterProvider router={router}>
+        <RouterProvider router={router} basename="/<business-proj>">
         </RouterProvider>
   
     </div>
