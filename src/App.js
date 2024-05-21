@@ -1,23 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Layout from './components/generic/Home/layout/Layout';
+import Home from './components/generic/Home/Home';
+import Cart from './components/cart/Cart';
+import { useEffect, useState } from 'react';
+import HomeCards from './components/Cards/HomeCards';
+import Notification from './components/Notification/Notification';
+import Antique from './components/Antique/Antique';
+
+
+
 
 function App() {
+ 
+  const [cart, setCart] = useState([]);
+  
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+
+  // Save cart items to localStorage whenever the cart state changes
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+   
+
+    
+  };
+  
+
+  const handleRemoveFromCart = (index) => {
+    setCart(cart.filter((_, i) => i !== index));
+  };
+  const router = createBrowserRouter([
+    {path:'' , element:<Layout/> , children:[
+      // {path:'clothes' , element:<Antique addToCart={addToCart}/>},
+      // {path:'antique' , element:<Antique addToCart={addToCart}/>},
+      {path:'', element:<HomeCards addToCart={addToCart}/> },
+      {path:'cart' , element:<Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart}/>},
+    ]}
+  ])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+        <RouterProvider router={router}>
+        </RouterProvider>
+  
     </div>
   );
 }
