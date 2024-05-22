@@ -1,11 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './components/generic/Home/layout/Layout';
-import Home from './components/generic/Home/Home';
+
 import Cart from './components/cart/Cart';
 import { useEffect, useState } from 'react';
 import HomeCards from './components/Cards/HomeCards';
-import Notification from './components/Notification/Notification';
-import Antique from './components/Antique/Antique';
+
 
 
 
